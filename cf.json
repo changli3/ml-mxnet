@@ -81,6 +81,7 @@
                 "KeyName": {"Ref": "KeyPairName"},
 				"UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
 				"#!/bin/bash \n",
+				"apt-get -y install imagemagick \n",
 				"cd /home/ubuntu \n",
 				"runuser -l ubuntu -c 'git clone https://github.com/changli3/ml-mxnet.git'\n",
 				"sed -i 's/self.args.port/int(self.args.port)/' /home/ubuntu/anaconda3/envs/mxnet_p36/lib/python3.6/site-packages/mms/mxnet_model_server.py \n",
