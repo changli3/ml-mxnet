@@ -9,7 +9,7 @@ Here’s my planed topics:
 ### Step 1. Lauch AWS VM with template file [cf.json](./cf.json)
 You can use the AWS console, or use AWS CLI like below (remember to download the tempalte file to your computer and change parameters to proper values) -
 ```
-aws cloudformation deploy --template-file cf.json --stack-name test-ml --parameter-overrides InstanceSubnet=subnet-2b976000 InstanceSecurityGroup=sg-58e1fc3d KeyPairName=TreaEBSLab --tags Name=DLVM
+aws cloudformation deploy --template-file cf.json --stack-name test-ml --parameter-overrides InstanceSubnet=subnet-2b976000 InstanceSecurityGroup=sg-58e1fc3d KeyPairName=TreaEBSLab
 ```
 ### Step 2. SSH to the VM
 Once the CF template completed, SSH to it with username "ubuntu" and the key used to launch the template.
