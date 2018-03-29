@@ -1,4 +1,5 @@
-TemplateFormatVersion": "2010-09-09",
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "AWS CF Template for Simple MXNet Using AWS DLAMI on Ubuntu 16.4",
     "Parameters": {
         "AmiImageId": {
@@ -59,19 +60,6 @@ TemplateFormatVersion": "2010-09-09",
     "Resources": {
         "DLServer": {
             "Type": "AWS::EC2::Instance",
-            "Metadata": {
-                "AWS::CloudFormation::Init": {
-                    "config": {
-						"commands" : {
-						   "010_git_clone": {
-							"command": "runuser -l ubuntu -c 'git clone https://github.com/changli3/ml-mxnet.git'",
-							"cwd": "/home/ubuntu",
-							"ignoreErrors": "false"
-						  }
-						}
-                    }
-                }
-            },
             "Properties": {
                 "InstanceType": {
                     "Ref": "InstanceType"                    
