@@ -1,5 +1,4 @@
-{
-    "AWSTemplateFormatVersion": "2010-09-09",
+TemplateFormatVersion": "2010-09-09",
     "Description": "AWS CF Template for Simple MXNet Using AWS DLAMI on Ubuntu 16.4",
     "Parameters": {
         "AmiImageId": {
@@ -28,12 +27,8 @@
 			"Default": "150",
             "Type": "String"
         },
-        "DataVolumeSize": {
-            "Description": "Data volume size in mb",
-			"Default": "50",
-            "Type": "String"
-        },
         "KeyPairName": {
+			"Default": "TreaEBSLab",
             "Type": "String"
         }
     },
@@ -50,8 +45,7 @@
                         "InstanceSubnet",
 						"InstanceSecurityGroup",
 						"InstanceType",
-						"SystemVolumeSize",
-						"DataVolumeSize"						
+						"SystemVolumeSize"					
                     ]
                 }
             ],
@@ -90,20 +84,20 @@
                             "VolumeSize": {"Ref": "SystemVolumeSize"},
                             "VolumeType": "gp2"
                         }
-                    },
-                    {
-                        "DeviceName": "xvdc",
-                        "Ebs": {
-                            "VolumeSize": {"Ref": "DataVolumeSize"},
-                            "VolumeType": "gp2"
-                        }
                     }
                 ],
                 "SecurityGroupIds": [
                     {"Ref": "InstanceSecurityGroup"}
                 ],
 				"SubnetId" : {"Ref" : "InstanceSubnet"},
-                "KeyName": {"Ref": "KeyPairName"}
+                "KeyName": {"Ref": "KeyPairName"},
+				"UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
+				"#!/bin/bash \n",
+				"cd /home/ubuntu \n",
+				"runuser -l ubuntu -c 'git clone https://github.com/changli3/ml-mxnet.git'\n",
+				"sed -i 's/self.args.port/int(self.args.port)/' /home/ubuntu/anaconda3/envs/mxnet_p36/lib/python3.6/site-packages/mms/mxnet_model_server.py \n",
+				"sed -i 's/int(int(self.args.port))/int(self.args.port)/' /home/ubuntu/anaconda3/envs/mxnet_p36/lib/python3.6/site-packages/mms/mxnet_model_server.py \n"
+				]]}}
             }
         }
     }
