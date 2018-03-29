@@ -1,0 +1,10 @@
+cd caffe
+./startsvr &
+cd ../inception
+./startsvr &   
+cd ../squeeze
+./startsvr &
+cd ../ssd
+./startsvr &
+cd ../alex
+./startsvr &

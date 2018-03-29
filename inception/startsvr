@@ -1,0 +1,5 @@
+if [ -e Inception-BN.model]
+ mxnet-model-server --models inception=Inception-BN.model --port 8085
+else
+ mxnet-model-server --models inception=https://s3.amazonaws.com/model-server/models/inception-bn/Inception-BN.model --port 8085
+fi

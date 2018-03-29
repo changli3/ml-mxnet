@@ -1,0 +1,15 @@
+fullfilename=$1
+filename=$(basename "$fullfilename")
+fname="${filename%.*}"
+ext="${filename##*.}"
+
+curl -O $fullfilename
+if [[ $ext == jpg ]]; 
+then 
+   dummay=1
+else 
+   convert "$fname.$ext" "$fname.jpg"
+   rm "$fname.$ext" 
+fi
+./predict "$fname.jpg"
+rm "$fname.jpg"

@@ -1,0 +1,6 @@
+if [ -e squeezenet_v1.1.model ]
+then 
+ mxnet-model-server --models squeezenet=squeezenet_v1.1.model --port 8081
+else
+ mxnet-model-server --models squeezenet=https://s3.amazonaws.com/model-server/models/squeezenet_v1.1/squeezenet_v1.1.model  --port 8081
+fi

@@ -1,0 +1,5 @@
+if [ -e alexnet.model ]
+ mxnet-model-server --models alexnet=alexnet.model --port 8084
+else
+ mxnet-model-server --models alexnet=https://s3.amazonaws.com/model-server/models/onnx-alexnet/alexnet.model --port 8084
+fi
