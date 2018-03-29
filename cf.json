@@ -1,0 +1,110 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "AWS CF Template for Simple MXNet Using AWS DLAMI on Ubuntu 16.4",
+    "Parameters": {
+        "AmiImageId": {
+			"Default": "ami-bc09d9c1",
+            "Description": "Please enter the AMI image ID. I have here is Deep Learning AMI (Ubuntu) Version 6.0 (ami-bc09d9c1)",
+            "Type": "String"
+        },
+
+        "InstanceSubnet": {
+            "Description": "Please enter instance subnet ID.",
+			"Default": "subnet-2b976000",
+            "Type": "String"
+        },
+        "InstanceSecurityGroup": {
+            "Description": "Please enter the security group ID.",
+			"Default": "sg-58e1fc3d",
+            "Type": "String"
+        },
+        "InstanceType": {
+            "Description": "Instance type - need to 4xlarge and above",
+			"Default": "m4.4xlarge",
+            "Type": "String"
+        },
+        "SystemVolumeSize": {
+            "Description": "System volume size in mb",
+			"Default": "150",
+            "Type": "String"
+        },
+        "DataVolumeSize": {
+            "Description": "Data volume size in mb",
+			"Default": "50",
+            "Type": "String"
+        },
+        "KeyPairName": {
+            "Type": "String"
+        }
+    },
+    "Metadata": {
+        "AWS::CloudFormation::Interface": {
+            "ParameterGroups": [
+                {
+                    "Label": {
+                        "default": "AWS Environment"
+                    },
+                    "Parameters": [
+                        "KeyPairName",
+						"AmiImageId",
+                        "InstanceSubnet",
+						"InstanceSecurityGroup",
+						"InstanceType",
+						"SystemVolumeSize",
+						"DataVolumeSize"						
+                    ]
+                }
+            ],
+            "ParameterLabels": {
+                "KeyPairName": {
+                    "default": "Key Pair Name"
+                }
+            }
+        }
+    },
+    "Resources": {
+        "DLServer": {
+            "Type": "AWS::EC2::Instance",
+            "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "config": {
+						"commands" : {
+						   "010_git_clone": {
+							"command": "runuser -l ubuntu -c 'git clone https://github.com/changli3/ml-mxnet.git'",
+							"cwd": "/home/ubuntu",
+							"ignoreErrors": "false"
+						  }
+						}
+                    }
+                }
+            },
+            "Properties": {
+                "InstanceType": {
+                    "Ref": "InstanceType"                    
+                },
+                "ImageId": {"Ref": "AmiImageId"},
+                "BlockDeviceMappings": [
+                    {
+                        "DeviceName": "/dev/sda1",
+                        "Ebs": {
+                            "VolumeSize": {"Ref": "SystemVolumeSize"},
+                            "VolumeType": "gp2"
+                        }
+                    },
+                    {
+                        "DeviceName": "xvdc",
+                        "Ebs": {
+                            "VolumeSize": {"Ref": "DataVolumeSize"},
+                            "VolumeType": "gp2"
+                        }
+                    }
+                ],
+                "SecurityGroupIds": [
+                    {"Ref": "InstanceSecurityGroup"}
+                ],
+				"SubnetId" : {"Ref" : "InstanceSubnet"},
+                "KeyName": {"Ref": "KeyPairName"}
+            }
+        }
+    }
+}
