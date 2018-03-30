@@ -8,8 +8,8 @@ What is the difference and comparison between deep learning on cluster and deep 
 With all these in mind, I want to start a series of labs. I will mainly look into two frameworks: MxNet and TensorFlow. This one is to understand how to serve once a model is built and trained. After this lab, I would say that it appears to me quite easy to scale the model serving.
 
 ## Simple MxNet Server Lab
-### Step 1. Lauch AWS VM with template file [cf.json](./cf.json)
-You can use the AWS console, or use AWS CLI like below (remember to download the tempalte file to your computer and change parameters to proper values) -
+### Step 1. Lauch AWS VM
+I have an AWS CF template file [cf.json](./cf.json) here. You can launch it in the AWS console, or use AWS CLI like below. Remember to download the tempalte file to your computer and change parameters to proper values -
 ```
 aws cloudformation deploy --template-file cf.json --stack-name test-ml --parameter-overrides InstanceSubnet=subnet-2b976000 InstanceSecurityGroup=sg-58e1fc3d KeyPairName=TreaEBSLab
 ```
