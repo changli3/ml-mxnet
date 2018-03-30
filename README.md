@@ -47,3 +47,7 @@ Google to find an object picture to test, for examples: https://st2.indiarailinf
 aws cloudformation delete-stack --stack-name test-ml
 ```
 
+## Watch Video Instruction
+[![Video Instructuion](https://img.youtube.com/vi/MtquftUwW9Q/0.jpg)](https://youtu.be/MtquftUwW9Q "Video Instruction")
+
+
