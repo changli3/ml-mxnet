@@ -26,8 +26,8 @@ Run the following commands -
 cd ml-mxnet
 ./start-servers
 ```
-Need to wait about five minutes the first you start the servers.
-### Step 5. Test with provide image files
+You need to wait about five minutes the first you start the servers.
+### Step 5. Test with provided images
 Now open another another SSH terminal to the VM, run the following commands to test - 
 ```
 cd ~/ml-mxnet
