@@ -1,11 +1,13 @@
 # ml-mxnet
-I wanted a step to step evaluation guide to quickly grapes basic concepts of deep learning and have an understanding of the requirements of optimize and scale up the underline infrastructure. I could not find one so I have to start one. 
-Here’s my planed topics:
-## Topics
-* [Simple MXNet](./README.md) - Basic server usage on prebuilt MXNet models.
-* [Simple TensorFlow](../ml-tensorflow/README.md) - Basic server usage on prebuilt Tensorflow models.
-* [Distributed TensorFlow](../ml-tensorflow-distributed/README.md) – Distributed Tensorflow training and serving
-## Simple MXNet Steps
+I wanted to find step to step evaluation labs to quickly grapes basic concepts of deep learning, so I can answer some basic questions like -
+### How do I pick a framework and coin a model from a real world problem?
+### How fast is the training process, how do I scale the training?
+### How fast is the training process, how do I scale the training? How to optimize it on stream data like stock price and log data stream?
+### What is the difference and comparison between deep learning on cluster and deep learning on Hadoop/Spark? 
+
+With all these in mind, I want to start a series of labs. I will mainly look into two frameworks: MxNet and TensorFlow. This one is to understand how to serve once a model is built and trained. After this lab, I would say that it appears to me quite easy to scale the model serving.
+
+## Simple MxNet Server Lab
 ### Step 1. Lauch AWS VM with template file [cf.json](./cf.json)
 You can use the AWS console, or use AWS CLI like below (remember to download the tempalte file to your computer and change parameters to proper values) -
 ```
