@@ -1,9 +1,9 @@
 # ml-mxnet
 I wanted to find step to step evaluation labs to quickly grapes basic concepts of deep learning, so I can answer some basic questions like -
-### How do I pick a framework and coin a model from a real world problem?
-### How fast is the training process, how do I scale the training?
-### How fast is the training process, how do I scale the training? How to optimize it on stream data like stock price and log data stream?
-### What is the difference and comparison between deep learning on cluster and deep learning on Hadoop/Spark? 
+How do I pick a framework and coin a model from a real world problem?
+How fast is the training process, how do I scale the training?
+How fast is the training process, how do I scale the training? How to optimize it on stream data like stock price and log data stream?
+What is the difference and comparison between deep learning on cluster and deep learning on Hadoop/Spark? 
 
 With all these in mind, I want to start a series of labs. I will mainly look into two frameworks: MxNet and TensorFlow. This one is to understand how to serve once a model is built and trained. After this lab, I would say that it appears to me quite easy to scale the model serving.
 
