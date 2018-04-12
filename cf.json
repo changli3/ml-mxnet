@@ -3,33 +3,33 @@
     "Description": "AWS CF Template for Simple MXNet Using AWS DLAMI on Ubuntu 16.4 - by chang.li3@treasury.gov",
     "Parameters": {
         "AmiImageId": {
-			"Default": "ami-bc09d9c1",
+         "Default": "ami-bc09d9c1",
             "Description": "Please enter the AMI image ID. I have here is Deep Learning AMI (Ubuntu) Version 6.0 (ami-bc09d9c1)",
             "Type": "String"
         },
 
         "InstanceSubnet": {
             "Description": "Please enter instance subnet ID.",
-			"Default": "subnet-2b976000",
+         "Default": "subnet-2b976000",
             "Type": "String"
         },
         "InstanceSecurityGroup": {
             "Description": "Please enter the security group ID.",
-			"Default": "sg-58e1fc3d",
+         "Default": "sg-58e1fc3d",
             "Type": "String"
         },
         "InstanceType": {
             "Description": "Instance type - need to 4xlarge and above",
-			"Default": "m4.4xlarge",
+         "Default": "m4.4xlarge",
             "Type": "String"
         },
         "SystemVolumeSize": {
             "Description": "System volume size in mb",
-			"Default": "150",
+         "Default": "150",
             "Type": "String"
         },
         "KeyPairName": {
-			"Default": "TreaEBSLab",
+         "Default": "TreaEBSLab",
             "Type": "String"
         }
     },
@@ -42,11 +42,11 @@
                     },
                     "Parameters": [
                         "KeyPairName",
-						"AmiImageId",
+                  "AmiImageId",
                         "InstanceSubnet",
-						"InstanceSecurityGroup",
-						"InstanceType",
-						"SystemVolumeSize"					
+                  "InstanceSecurityGroup",
+                  "InstanceType",
+                  "SystemVolumeSize"               
                     ]
                 }
             ],
@@ -60,18 +60,18 @@
     "Resources": {
         "DLServer": {
             "Type": "AWS::EC2::Instance",
-			 "Metadata" : {
-				"Comment" : "Install imagemagick packages",
-				"AWS::CloudFormation::Init" : {
-				  "config" : {
-					"packages" : {
-					  "apt" : {
-						"imagemagick" : []
-					  }
-					}
-				  }
-				}
-			  },
+          "Metadata" : {
+            "Comment" : "Install imagemagick packages",
+            "AWS::CloudFormation::Init" : {
+              "config" : {
+               "packages" : {
+                 "apt" : {
+                  "imagemagick" : []
+                 }
+               }
+              }
+            }
+           },
             "Properties": {
                 "InstanceType": {
                     "Ref": "InstanceType"                    
@@ -89,18 +89,18 @@
                 "SecurityGroupIds": [
                     {"Ref": "InstanceSecurityGroup"}
                 ],
-				"SubnetId" : {"Ref" : "InstanceSubnet"},
+            "SubnetId" : {"Ref" : "InstanceSubnet"},
                 "KeyName": {"Ref": "KeyPairName"},
-				"Tags" : [
-					{"Key" : "Name", "Value" : "Deep Learning Instance"},
-				],
-				"UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
-				"#!/bin/bash \n",
-				"cd /home/ubuntu \n",
-				"runuser -l ubuntu -c 'git clone https://github.com/changli3/ml-mxnet.git'\n",
-				"sed -i 's/self.args.port/int(self.args.port)/' /home/ubuntu/anaconda3/envs/mxnet_p36/lib/python3.6/site-packages/mms/mxnet_model_server.py \n",
-				"apt-get install -y imagemagick > install.log \n"
-				]]}}
+            "Tags" : [
+               {"Key" : "Name", "Value" : "Deep Learning Instance"},
+            ],
+            "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
+            "#!/bin/bash \n",
+            "cd /home/ubuntu \n",
+            "runuser -l ubuntu -c 'git clone https://github.com/changli3/ml-mxnet.git'\n",
+            "sed -i 's/self.args.port/int(self.args.port)/' /home/ubuntu/anaconda3/envs/mxnet_p36/lib/python3.6/site-packages/mms/mxnet_model_server.py \n",
+            "apt-get install -y imagemagick > install.log \n"
+            ]]}}
             }
         }
     }
