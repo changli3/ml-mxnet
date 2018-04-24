@@ -20,7 +20,7 @@
         },
         "InstanceType": {
             "Description": "Instance type - need to 4xlarge and above",
-         "Default": "m4.4xlarge",
+         "Default": "m4.xlarge",
             "Type": "String"
         },
         "SystemVolumeSize": {
