@@ -1,3 +1,4 @@
+source activate mxnet_p36
 cd caffe
 ./startsvr &
 cd ../inception

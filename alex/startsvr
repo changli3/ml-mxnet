@@ -1,6 +1,6 @@
 if [ -e alexnet.model ]
 then
- mxnet-model-server --models alexnet=alexnet.model --port 8084
+ mxnet-model-server --models alexnet=alexnet.model --port 8084 --host 0
 else
- mxnet-model-server --models alexnet=https://s3.amazonaws.com/model-server/models/onnx-alexnet/alexnet.model --port 8084
+ mxnet-model-server --models alexnet=https://s3.amazonaws.com/model-server/models/onnx-alexnet/alexnet.model --port 8084 --host 0
 fi

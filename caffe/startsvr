@@ -1,6 +1,6 @@
 if [ -e caffenet.model ]
 then
- mxnet-model-server --models caffenet=caffenet.model --port 8083
+ mxnet-model-server --models caffenet=caffenet.model --port 8083 --host 0
 else
- mxnet-model-server --models caffenet=https://s3.amazonaws.com/model-server/models/caffenet/caffenet.model --port 8083
+ mxnet-model-server --models caffenet=https://s3.amazonaws.com/model-server/models/caffenet/caffenet.model --port 8083 --host 0
 fi

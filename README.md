@@ -42,7 +42,30 @@ Google to find an object picture to test, for examples: https://st2.indiarailinf
 ```
 ./get-predict https://st2.indiarailinfo.com/kjfdsuiemjvcya5/0/1978394/0/img60454972968.jpg
 ```
-### Step 7. Terninate the CF Stack after Test
+
+### Step 7. Use Postman to Test
+
+You can use Postman to test the services as this:
+![Postman Screen](https://raw.githubusercontent.com/changli3/ml-mxnet/master/postman.JPG "Postman Screen")
+
+```
+#SqueezeNet
+curl -X POST http://PRIVATE-IP:8081/squeezenet/predict -F "data=@image-file"
+
+#SSD
+curl -X POST http://PRIVATE-IP:8082/ssd/predict -F "data=@image-file"
+
+#CaffeNet
+curl -X POST http://PRIVATE-IP:8083/caffenet/predict -F "data=@image-file"
+
+#AlexNet
+curl -X POST http://PRIVATE-IP:8084/alexnet/predict -F "input_0=@image-file"
+
+#Inception V3
+curl -X POST http://PRIVATE-IP:8085/inception/predict -F "data=@image-file"
+```
+
+### Step 8. Terminate the CF Stack after Test
 ```
 aws cloudformation delete-stack --stack-name test-ml
 ```
