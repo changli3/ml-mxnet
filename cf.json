@@ -98,7 +98,7 @@
             "#!/bin/bash \n",
             "cd /home/ubuntu \n",
             "runuser -l ubuntu -c 'git clone https://github.com/changli3/ml-mxnet.git'\n",
-			"runuser -l ubuntu -c 'git clone https://github.com/udacity/deep-learning.git'\n",
+			"runuser -l ubuntu -c 'echo backend : agg > /home/ubuntu/.config/matplotlib/matplotlibrc'\n",
             "sed -i 's/self.args.port/int(self.args.port)/' /home/ubuntu/anaconda3/envs/mxnet_p36/lib/python3.6/site-packages/mms/mxnet_model_server.py \n",
             "apt-get install -y imagemagick > install.log \n"
             ]]}}
